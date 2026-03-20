@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicPulse — Ward Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="shell">
+
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="logo-mark">CP</span>
+        <span class="logo-text">CivicPulse</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="../index.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Report issue
+        </a>
+        <a href="dashboard.html" class="nav-item active">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Ward dashboard
+        </a>
+        <a href="scorecard.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Scorecards
+        </a>
+      </nav>
+      <div class="sidebar-sdg">
+        <span class="sdg-badge">SDG 11</span>
+        <span class="sdg-label">Sustainable Cities</span>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Ward 42 — MG Road</h1>
+          <p class="page-sub">Municipal officer view · Priority queue updated every 24h</p>
+        </div>
+        <div class="header-user">
+          <div class="user-avatar officer">WO</div>
+          <span class="user-name">Ward Officer</span>
+        </div>
+      </header>
+
+      <!-- Stats row -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="stat-num critical">14</span>
+          <span class="stat-label">Critical</span>
+          <span class="stat-hint">Score &gt; 70</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num warning">31</span>
+          <span class="stat-label">Pending</span>
+          <span class="stat-hint">Awaiting action</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num success">87%</span>
+          <span class="stat-label">Resolution rate</span>
+          <span class="stat-hint">This week</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">4.2d</span>
+          <span class="stat-label">Avg. resolution</span>
+          <span class="stat-hint">Last 30 days</span>
+        </div>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterIssues('all', this)">All issues</button>
+        <button class="filter-btn" onclick="filterIssues('road', this)">Road</button>
+        <button class="filter-btn" onclick="filterIssues('drainage', this)">Drainage</button>
+        <button class="filter-btn" onclick="filterIssues('lighting', this)">Lighting</button>
+        <button class="filter-btn" onclick="filterIssues('waste', this)">Waste</button>
+        <span class="decay-note">Score = votes × 1.2<sup>days</sup> · recalculated every 24h</span>
+      </div>
+
+      <!-- Issue table -->
+      <div class="issue-table">
+        <div class="table-head">
+          <span>Issue</span>
+          <span>Category</span>
+          <span>Age</span>
+          <span>Upvotes</span>
+          <span>Priority score</span>
+          <span>Action</span>
+        </div>
+
+        <div class="table-row" data-cat="road">
+          <div class="issue-info">
+            <span class="issue-name">Pothole — MG Road junction</span>
+            <span class="issue-loc">Near SBI ATM, Ward 42</span>
+          </div>
+          <span class="tag tag-road">Road</span>
+          <span class="age-badge old">12d</span>
+          <span class="votes">38</span>
+          <div class="score-cell">
+            <div class="score-bar-wrap"><div class="score-bar" style="width:94%;background:#dc2626"></div></div>
+            <span class="score-num critical">94</span>
+          </div>
+          <div class="action-cell">
+            <button class="action-btn" onclick="assignIssue(this)">Assign</button>
+          </div>
+        </div>
+
+        <div class="table-row" data-cat="drainage">
+          <div class="issue-info">
+            <span class="issue-name">Blocked storm drain — 5th Cross</span>
+            <span class="issue-loc">Opposite Nilgiris, Ward 42</span>
+          </div>
+          <span class="tag tag-drainage">Drainage</span>
+          <span class="age-badge old">8d</span>
+          <span class="votes">24</span>
+          <div class="score-cell">
+            <div class="score-bar-wrap"><div class="score-bar" style="width:81%;background:#d97706"></div></div>
+            <span class="score-num warning">81</span>
+          </div>
+          <div class="action-cell">
+            <button class="action-btn" onclick="assignIssue(this)">Assign</button>
+          </div>
+        </div>
+
+        <div class="table-row" data-cat="road">
+          <div class="issue-info">
+            <span class="issue-name">Road cave-in — Residency Road</span>
+            <span class="issue-loc">Near bus stop 14B, Ward 42</span>
+          </div>
+          <span class="tag tag-road">Road</span>
+          <span class="age-badge">6d</span>
+          <span class="votes">19</span>
+          <div class="score-cell">
+            <div class="score-bar-wrap"><div class="score-bar" style="width:72%;background:#d97706"></div></div>
+            <span class="score-num warning">72</span>
+          </div>
+          <div class="action-cell">
+            <button class="action-btn" onclick="assignIssue(this)">Assign</button>
+          </div>
+        </div>
+
+        <div class="table-row" data-cat="lighting">
+          <div class="issue-info">
+            <span class="issue-name">Street light out — Park Avenue</span>
+            <span class="issue-loc">Pole #P-214, Ward 42</span>
+          </div>
+          <span class="tag tag-lighting">Lighting</span>
+          <span class="age-badge">4d</span>
+          <span class="votes">17</span>
+          <div class="score-cell">
+            <div class="score-bar-wrap"><div class="score-bar" style="width:57%;background:#7c3aed"></div></div>
+            <span class="score-num">57</span>
+          </div>
+          <div class="action-cell">
+            <button class="action-btn" onclick="assignIssue(this)">Assign</button>
+          </div>
+        </div>
+
+        <div class="table-row" data-cat="waste">
+          <div class="issue-info">
+            <span class="issue-name">Illegal dumping — Nehru Nagar</span>
+            <span class="issue-loc">Behind compound wall, Ward 42</span>
+          </div>
+          <span class="tag tag-waste">Waste</span>
+          <span class="age-badge">2d</span>
+          <span class="votes">9</span>
+          <div class="score-cell">
+            <div class="score-bar-wrap"><div class="score-bar" style="width:33%;background:#1a6b4a"></div></div>
+            <span class="score-num">33</span>
+          </div>
+          <div class="action-cell">
+            <button class="action-btn" onclick="assignIssue(this)">Assign</button>
+          </div>
+        </div>
+
+        <div class="table-row" data-cat="drainage">
+          <div class="issue-info">
+            <span class="issue-name">Overflowing manhole — 12th Main</span>
+            <span class="issue-loc">Near school gate, Ward 42</span>
+          </div>
+          <span class="tag tag-drainage">Drainage</span>
+          <span class="age-badge">1d</span>
+          <span class="votes">6</span>
+          <div class="score-cell">
+            <div class="score-bar-wrap"><div class="score-bar" style="width:19%;background:#1a6b4a"></div></div>
+            <span class="score-num">19</span>
+          </div>
+          <div class="action-cell">
+            <button class="action-btn" onclick="assignIssue(this)">Assign</button>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>
