@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CivicPulse — Ward Dashboard</title>
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/darkmode.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 </head>
@@ -12,13 +13,13 @@
 
   <div class="shell">
 
-    <aside class="sidebar">
+        <aside class="sidebar">
       <div class="sidebar-logo">
         <span class="logo-mark">CP</span>
         <span class="logo-text">CivicPulse</span>
       </div>
       <nav class="sidebar-nav">
-        <a href="../index.html" class="nav-item">
+        <a href="../index.html" class="nav-item ">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Report issue
         </a>
@@ -26,15 +27,24 @@
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           Ward dashboard
         </a>
-        <a href="scorecard.html" class="nav-item">
+        <a href="scorecard.html" class="nav-item ">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
           Scorecards
         </a>
-        <a href="profile.html" class="nav-item">
+        <a href="profile.html" class="nav-item ">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           My profile
         </a>
+        <a href="history.html" class="nav-item ">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          My reports
+        </a>
       </nav>
+      <button class="dark-toggle" onclick="toggleDark()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        Dark mode
+        <div class="dark-toggle-track"><div class="dark-toggle-thumb"></div></div>
+      </button>
       <div class="sidebar-sdg">
         <span class="sdg-badge">SDG 11</span>
         <span class="sdg-label">Sustainable Cities</span>
@@ -78,6 +88,20 @@
         </div>
       </div>
 
+      <!-- Search + Sort toolbar -->
+      <div class="dashboard-toolbar">
+        <div class="toolbar-search-wrap">
+          <svg class="toolbar-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input class="toolbar-search" id="toolbar-search" type="text" placeholder="Search issues by name or location..." oninput="searchAndSort()" />
+        </div>
+        <select class="sort-select" id="sort-select" onchange="searchAndSort()">
+          <option value="score">Sort: Highest score</option>
+          <option value="votes">Sort: Most votes</option>
+          <option value="age">Sort: Oldest first</option>
+          <option value="newest">Sort: Newest first</option>
+        </select>
+      </div>
+
       <!-- Filter bar -->
       <div class="filter-bar">
         <button class="filter-btn active" onclick="filterIssues('all', this)">All issues</button>
@@ -90,7 +114,7 @@
 
       <!-- Issue table -->
       <div class="issue-table">
-        <div class="table-head">
+        <div id="issue-tbody"><div class="table-head" style="display:grid;grid-template-columns:2fr 100px 60px 80px 160px 100px;gap:12px;padding:12px 20px;background:var(--surface-2);border-bottom:1px solid var(--border);font-size:11px;font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.6px;">
           <span>Issue</span>
           <span>Category</span>
           <span>Age</span>
@@ -99,7 +123,7 @@
           <span>Action</span>
         </div>
 
-        <div class="table-row" data-cat="road">
+        <div class="table-row" data-cat="road" data-score="94" data-votes="38" data-age="12">
           <div class="issue-info">
             <span class="issue-name">Pothole — MG Road junction</span>
             <span class="issue-loc">Near SBI ATM, Ward 42</span>
@@ -116,7 +140,7 @@
           </div>
         </div>
 
-        <div class="table-row" data-cat="drainage">
+        <div class="table-row" data-cat="drainage" data-score="81" data-votes="24" data-age="8">
           <div class="issue-info">
             <span class="issue-name">Blocked storm drain — 5th Cross</span>
             <span class="issue-loc">Opposite Nilgiris, Ward 42</span>
@@ -133,7 +157,7 @@
           </div>
         </div>
 
-        <div class="table-row" data-cat="road">
+        <div class="table-row" data-cat="road" data-score="72" data-votes="19" data-age="6">
           <div class="issue-info">
             <span class="issue-name">Road cave-in — Residency Road</span>
             <span class="issue-loc">Near bus stop 14B, Ward 42</span>
@@ -150,7 +174,7 @@
           </div>
         </div>
 
-        <div class="table-row" data-cat="lighting">
+        <div class="table-row" data-cat="lighting" data-score="57" data-votes="17" data-age="4">
           <div class="issue-info">
             <span class="issue-name">Street light out — Park Avenue</span>
             <span class="issue-loc">Pole #P-214, Ward 42</span>
@@ -167,7 +191,7 @@
           </div>
         </div>
 
-        <div class="table-row" data-cat="waste">
+        <div class="table-row" data-cat="waste" data-score="33" data-votes="9" data-age="2">
           <div class="issue-info">
             <span class="issue-name">Illegal dumping — Nehru Nagar</span>
             <span class="issue-loc">Behind compound wall, Ward 42</span>
@@ -184,7 +208,7 @@
           </div>
         </div>
 
-        <div class="table-row" data-cat="drainage">
+        <div class="table-row" data-cat="drainage" data-score="19" data-votes="6" data-age="1">
           <div class="issue-info">
             <span class="issue-name">Overflowing manhole — 12th Main</span>
             <span class="issue-loc">Near school gate, Ward 42</span>
@@ -203,9 +227,65 @@
 
       </div>
 
+      <p class="no-results" id="no-results">No issues match your search.</p>
+
     </main>
   </div>
 
   <script src="../js/app.js"></script>
+  <script>
+    let activeCat = 'all';
+
+    function filterIssues(cat, btn) {
+      activeCat = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      searchAndSort();
+    }
+
+    function searchAndSort() {
+      const query = document.getElementById('toolbar-search').value.toLowerCase();
+      const sort  = document.getElementById('sort-select').value;
+      const rows  = Array.from(document.querySelectorAll('.table-row'));
+
+      const scoreMap  = {'94':94,'81':81,'72':72,'57':57,'33':33,'19':19};
+      const votesMap  = {'94':38,'81':24,'72':19,'57':17,'33':9,'19':6};
+      const ageMap    = {'94':12,'81':8,'72':6,'57':4,'33':2,'19':1};
+
+      rows.forEach(row => {
+        const name   = row.querySelector('.issue-name')?.textContent.toLowerCase() || '';
+        const loc    = row.querySelector('.issue-loc')?.textContent.toLowerCase()  || '';
+        const cat    = row.dataset.cat;
+        const matchQ = name.includes(query) || loc.includes(query);
+        const matchC = activeCat === 'all' || cat === activeCat;
+        row.style.display = (matchQ && matchC) ? '' : 'none';
+      });
+
+      // Sort visible rows
+      const table = document.querySelector('.issue-table');
+      const head  = document.querySelector('.table-head');
+      const visibleRows = rows.filter(r => r.style.display !== 'none');
+
+      visibleRows.sort((a, b) => {
+        const sa = parseInt(a.querySelector('.score-num')?.textContent) || 0;
+        const sb = parseInt(b.querySelector('.score-num')?.textContent) || 0;
+        const va = parseInt(a.querySelector('.votes')?.textContent) || 0;
+        const vb = parseInt(b.querySelector('.votes')?.textContent) || 0;
+        const aa = parseInt(a.querySelector('.age-badge')?.textContent) || 0;
+        const ab = parseInt(b.querySelector('.age-badge')?.textContent) || 0;
+        if (sort === 'score')  return sb - sa;
+        if (sort === 'votes')  return vb - va;
+        if (sort === 'age')    return ab - aa;
+        if (sort === 'newest') return aa - ab;
+        return 0;
+      });
+
+      visibleRows.forEach(r => table.appendChild(r));
+
+      const visible = visibleRows.length;
+      const nr = document.getElementById('no-results');
+      if (nr) nr.classList.toggle('visible', visible === 0);
+    }
+  </script>
 </body>
 </html>
