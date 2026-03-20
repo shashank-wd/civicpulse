@@ -1,0 +1,118 @@
+/* ── Dark Mode Variables ──────────────────────── */
+html.dark {
+  --green-dark:   #4aab7e;
+  --green-mid:    #5DCAA5;
+  --green-base:   #4aab7e;
+  --green-light:  #1D9E75;
+  --green-pale:   #083d2a;
+  --green-ghost:  #0a2e20;
+
+  --ink:          #eef2ef;
+  --ink-mid:      #c8d4cc;
+  --ink-muted:    #8fa898;
+  --ink-faint:    #5a6e62;
+
+  --surface:      #141f18;
+  --surface-2:    #1a2820;
+  --surface-3:    #1f3028;
+  --border:       #263d2e;
+  --border-dark:  #2e4d38;
+
+  --red:          #f87171;
+  --red-pale:     #2a1515;
+  --amber:        #fbbf24;
+  --amber-pale:   #2a1e08;
+  --purple:       #a78bfa;
+  --purple-pale:  #1e1535;
+
+  --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+}
+
+/* ── Dark mode sidebar ────────────────────────── */
+html.dark .sidebar {
+  background: #0c1610;
+  border-right: 1px solid #1a2820;
+}
+
+html.dark .logo-mark {
+  background: #1D9E75;
+  color: #0c1610;
+}
+
+/* ── Dark mode toggle button ──────────────────── */
+.dark-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 12px 0;
+  padding: 9px 12px;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  width: calc(100% - 24px);
+}
+
+.dark-toggle:hover {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.8);
+}
+
+.dark-toggle-track {
+  margin-left: auto;
+  width: 28px;
+  height: 16px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+html.dark .dark-toggle-track {
+  background: var(--green-light);
+}
+
+.dark-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  transition: transform 0.2s;
+}
+
+html.dark .dark-toggle-thumb {
+  transform: translateX(12px);
+}
+
+/* ── Dark: map mock ───────────────────────────── */
+html.dark .map-container,
+html.dark .map-mock { filter: brightness(0.75) saturate(0.8); }
+
+/* ── Dark: select arrow ───────────────────────── */
+html.dark select.field-input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235a6e62' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+}
+
+/* ── Dark: score bars keep color ─────────────────*/
+html.dark .score-bar   { opacity: 0.85; }
+html.dark .rank-bar    { opacity: 0.85; }
+html.dark .ward-bar-fill { opacity: 0.85; }
+
+/* ── Dark: body bg ────────────────────────────── */
+html.dark body { background: #101810; }
+
+/* ── Smooth transition on theme switch ───────────*/
+body, .sidebar, .main, .form-card, .form-section,
+.stat-card, .issue-table, .table-row, .history-card,
+.rank-list, .rank-row, .metric-card, .profile-sidebar-card,
+.upload-zone, .gps-bar, .map-container {
+  transition: background 0.2s, border-color 0.2s, color 0.15s;
+}

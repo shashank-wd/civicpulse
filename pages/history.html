@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicPulse — My Reports</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/darkmode.css" />
+  <link rel="stylesheet" href="../css/history.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="logo-mark">CP</span>
+        <span class="logo-text">CivicPulse</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="../index.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Report issue
+        </a>
+        <a href="dashboard.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Ward dashboard
+        </a>
+        <a href="scorecard.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Scorecards
+        </a>
+        <a href="profile.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          My profile
+        </a>
+        <a href="history.html" class="nav-item active">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          My reports
+        </a>
+      </nav>
+      <button class="dark-toggle" id="dark-toggle" onclick="toggleDark()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        Dark mode
+        <div class="dark-toggle-track" id="dark-track"><div class="dark-toggle-thumb"></div></div>
+      </button>
+      <div class="sidebar-sdg">
+        <span class="sdg-badge">SDG 11</span>
+        <span class="sdg-label">Sustainable Cities</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">My reports</h1>
+          <p class="page-sub">All issues you have submitted — track their resolution status</p>
+        </div>
+        <div class="header-user">
+          <div class="user-avatar">SB</div>
+          <span class="user-name">Shashank</span>
+        </div>
+      </header>
+
+      <div class="history-summary">
+        <div class="hsummary-card"><span class="hsummary-num">7</span><span class="hsummary-lbl">Total submitted</span></div>
+        <div class="hsummary-card"><span class="hsummary-num success">4</span><span class="hsummary-lbl">Resolved</span></div>
+        <div class="hsummary-card"><span class="hsummary-num warning">2</span><span class="hsummary-lbl">In progress</span></div>
+        <div class="hsummary-card"><span class="hsummary-num muted">1</span><span class="hsummary-lbl">Pending</span></div>
+      </div>
+
+      <div class="history-controls">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="search-input" id="history-search" placeholder="Search your reports..." oninput="filterHistory()" />
+        </div>
+        <div class="hfilter-group">
+          <button class="hfilter-btn active" onclick="setHistoryFilter('all',this)">All</button>
+          <button class="hfilter-btn" onclick="setHistoryFilter('pending',this)">Pending</button>
+          <button class="hfilter-btn" onclick="setHistoryFilter('in-progress',this)">In progress</button>
+          <button class="hfilter-btn" onclick="setHistoryFilter('resolved',this)">Resolved</button>
+        </div>
+      </div>
+
+      <div class="history-list" id="history-list">
+
+        <div class="history-card" data-status="resolved" data-title="pothole mg road junction">
+          <div class="hcard-left"><span class="hcat-dot road"></span></div>
+          <div class="hcard-body">
+            <div class="hcard-top">
+              <span class="hcard-title">Pothole — MG Road junction</span>
+              <span class="hstatus-badge resolved">Resolved</span>
+            </div>
+            <p class="hcard-meta">Road &nbsp;·&nbsp; Ward 42, MG Road &nbsp;·&nbsp; Submitted 14 Mar 2025</p>
+            <div class="hcard-timeline">
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Submitted</span><span class="htl-date">14 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Validated</span><span class="htl-date">15 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Assigned</span><span class="htl-date">17 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Resolved</span><span class="htl-date">20 Mar</span></div></div>
+            </div>
+            <div class="hcard-footer"><span class="hcard-votes">38 upvotes</span><span class="hcard-days">Resolved in 6 days</span></div>
+          </div>
+        </div>
+
+        <div class="history-card" data-status="in-progress" data-title="blocked storm drain 5th cross">
+          <div class="hcard-left"><span class="hcat-dot drainage"></span></div>
+          <div class="hcard-body">
+            <div class="hcard-top">
+              <span class="hcard-title">Blocked storm drain — 5th Cross</span>
+              <span class="hstatus-badge in-progress">In progress</span>
+            </div>
+            <p class="hcard-meta">Drainage &nbsp;·&nbsp; Ward 42, 5th Cross &nbsp;·&nbsp; Submitted 12 Mar 2025</p>
+            <div class="hcard-timeline">
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Submitted</span><span class="htl-date">12 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Validated</span><span class="htl-date">13 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Assigned</span><span class="htl-date">15 Mar</span></div></div>
+              <div class="htl-line"></div>
+              <div class="htl-step active"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Resolved</span><span class="htl-date">Pending</span></div></div>
+            </div>
+            <div class="hcard-footer"><span class="hcard-votes">24 upvotes</span><span class="hcard-days warning">8 days open</span></div>
+          </div>
+        </div>
+
+        <div class="history-card" data-status="resolved" data-title="street light out park avenue">
+          <div class="hcard-left"><span class="hcat-dot lighting"></span></div>
+          <div class="hcard-body">
+            <div class="hcard-top">
+              <span class="hcard-title">Street light out — Park Avenue</span>
+              <span class="hstatus-badge resolved">Resolved</span>
+            </div>
+            <p class="hcard-meta">Lighting &nbsp;·&nbsp; Ward 42, Park Avenue &nbsp;·&nbsp; Submitted 8 Mar 2025</p>
+            <div class="hcard-timeline">
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Submitted</span><span class="htl-date">8 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Validated</span><span class="htl-date">9 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Assigned</span><span class="htl-date">10 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Resolved</span><span class="htl-date">12 Mar</span></div></div>
+            </div>
+            <div class="hcard-footer"><span class="hcard-votes">17 upvotes</span><span class="hcard-days">Resolved in 4 days</span></div>
+          </div>
+        </div>
+
+        <div class="history-card" data-status="in-progress" data-title="illegal dumping nehru nagar">
+          <div class="hcard-left"><span class="hcat-dot waste"></span></div>
+          <div class="hcard-body">
+            <div class="hcard-top">
+              <span class="hcard-title">Illegal dumping — Nehru Nagar</span>
+              <span class="hstatus-badge in-progress">In progress</span>
+            </div>
+            <p class="hcard-meta">Waste &nbsp;·&nbsp; Ward 42, Nehru Nagar &nbsp;·&nbsp; Submitted 18 Mar 2025</p>
+            <div class="hcard-timeline">
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Submitted</span><span class="htl-date">18 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Validated</span><span class="htl-date">19 Mar</span></div></div>
+              <div class="htl-line"></div>
+              <div class="htl-step active"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Assigned</span><span class="htl-date">Pending</span></div></div>
+              <div class="htl-line"></div>
+              <div class="htl-step"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Resolved</span><span class="htl-date">—</span></div></div>
+            </div>
+            <div class="hcard-footer"><span class="hcard-votes">9 upvotes</span><span class="hcard-days warning">2 days open</span></div>
+          </div>
+        </div>
+
+        <div class="history-card" data-status="resolved" data-title="road cave-in residency road">
+          <div class="hcard-left"><span class="hcat-dot road"></span></div>
+          <div class="hcard-body">
+            <div class="hcard-top">
+              <span class="hcard-title">Road cave-in — Residency Road</span>
+              <span class="hstatus-badge resolved">Resolved</span>
+            </div>
+            <p class="hcard-meta">Road &nbsp;·&nbsp; Ward 42, Residency Road &nbsp;·&nbsp; Submitted 1 Mar 2025</p>
+            <div class="hcard-timeline">
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Submitted</span><span class="htl-date">1 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Validated</span><span class="htl-date">2 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Assigned</span><span class="htl-date">3 Mar</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Resolved</span><span class="htl-date">7 Mar</span></div></div>
+            </div>
+            <div class="hcard-footer"><span class="hcard-votes">19 upvotes</span><span class="hcard-days">Resolved in 6 days</span></div>
+          </div>
+        </div>
+
+        <div class="history-card" data-status="resolved" data-title="overflowing manhole 12th main">
+          <div class="hcard-left"><span class="hcat-dot drainage"></span></div>
+          <div class="hcard-body">
+            <div class="hcard-top">
+              <span class="hcard-title">Overflowing manhole — 12th Main</span>
+              <span class="hstatus-badge resolved">Resolved</span>
+            </div>
+            <p class="hcard-meta">Drainage &nbsp;·&nbsp; Ward 42, 12th Main &nbsp;·&nbsp; Submitted 24 Feb 2025</p>
+            <div class="hcard-timeline">
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Submitted</span><span class="htl-date">24 Feb</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Validated</span><span class="htl-date">25 Feb</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Assigned</span><span class="htl-date">26 Feb</span></div></div>
+              <div class="htl-line done"></div>
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Resolved</span><span class="htl-date">28 Feb</span></div></div>
+            </div>
+            <div class="hcard-footer"><span class="hcard-votes">11 upvotes</span><span class="hcard-days">Resolved in 4 days</span></div>
+          </div>
+        </div>
+
+        <div class="history-card" data-status="pending" data-title="broken footpath brigade road">
+          <div class="hcard-left"><span class="hcat-dot road"></span></div>
+          <div class="hcard-body">
+            <div class="hcard-top">
+              <span class="hcard-title">Broken footpath — Brigade Road</span>
+              <span class="hstatus-badge pending">Pending</span>
+            </div>
+            <p class="hcard-meta">Road &nbsp;·&nbsp; Ward 42, Brigade Road &nbsp;·&nbsp; Submitted 20 Mar 2025</p>
+            <div class="hcard-timeline">
+              <div class="htl-step done"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Submitted</span><span class="htl-date">20 Mar</span></div></div>
+              <div class="htl-line"></div>
+              <div class="htl-step active"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Validated</span><span class="htl-date">Pending</span></div></div>
+              <div class="htl-line"></div>
+              <div class="htl-step"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Assigned</span><span class="htl-date">—</span></div></div>
+              <div class="htl-line"></div>
+              <div class="htl-step"><div class="htl-dot"></div><div class="htl-info"><span class="htl-label">Resolved</span><span class="htl-date">—</span></div></div>
+            </div>
+            <div class="hcard-footer"><span class="hcard-votes">3 upvotes</span><span class="hcard-days muted">Just submitted</span></div>
+          </div>
+        </div>
+
+        <div class="history-empty" id="history-empty" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <p>No reports match your search</p>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/history.js"></script>
+</body>
+</html>
