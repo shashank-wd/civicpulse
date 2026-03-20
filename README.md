@@ -8,7 +8,8 @@ A hyper-local, community-powered urban issue reporting and resolution platform. 
 
 ## Live Prototype
 
-https://shashank-wd.github.io/civicpulse
+Open `index.html` directly in your browser — no build step, no dependencies, no server needed.
+
 ---
 
 ## Project Structure

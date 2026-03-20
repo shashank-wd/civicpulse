@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicPulse — My Profile</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/profile.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="logo-mark">CP</span>
+        <span class="logo-text">CivicPulse</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="../index.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Report issue
+        </a>
+        <a href="dashboard.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Ward dashboard
+        </a>
+        <a href="scorecard.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Scorecards
+        </a>
+        <a href="profile.html" class="nav-item active">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          My profile
+        </a>
+      </nav>
+      <div class="sidebar-sdg">
+        <span class="sdg-badge">SDG 11</span>
+        <span class="sdg-label">Sustainable Cities</span>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">My profile</h1>
+          <p class="page-sub">Your details are saved locally on this device</p>
+        </div>
+        <div class="header-user">
+          <div class="user-avatar" id="header-avatar">SB</div>
+          <span class="user-name" id="header-name">Shashank</span>
+        </div>
+      </header>
+
+      <div class="profile-layout">
+
+        <!-- Left: Avatar card -->
+        <aside class="profile-sidebar-card">
+          <div class="avatar-section">
+            <div class="avatar-large" id="avatar-display">SB</div>
+            <div class="avatar-info">
+              <p class="avatar-name" id="avatar-name-display">Shashank Bhadoriya</p>
+              <p class="avatar-city" id="avatar-city-display">Bengaluru, Karnataka</p>
+            </div>
+          </div>
+
+          <div class="profile-stats">
+            <div class="pstat">
+              <span class="pstat-num">7</span>
+              <span class="pstat-lbl">Issues reported</span>
+            </div>
+            <div class="pstat">
+              <span class="pstat-num">23</span>
+              <span class="pstat-lbl">Upvotes given</span>
+            </div>
+            <div class="pstat">
+              <span class="pstat-num">5</span>
+              <span class="pstat-lbl">Resolved near you</span>
+            </div>
+          </div>
+
+          <div class="profile-badge-list">
+            <span class="profile-badge">Active reporter</span>
+            <span class="profile-badge verified">Ward 42</span>
+          </div>
+        </aside>
+
+        <!-- Right: Form -->
+        <div class="profile-form-wrap">
+
+          <div class="save-toast" id="save-toast">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Profile saved successfully
+          </div>
+
+          <!-- Personal details -->
+          <div class="form-card">
+            <div class="form-card-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Personal details
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <label class="field-label">First name <span class="required">*</span></label>
+                <input type="text" class="field-input" id="first-name" placeholder="Shashank" oninput="liveUpdate()" />
+              </div>
+              <div class="field-group">
+                <label class="field-label">Last name <span class="required">*</span></label>
+                <input type="text" class="field-input" id="last-name" placeholder="Bhadoriya" oninput="liveUpdate()" />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Email address <span class="required">*</span></label>
+              <div class="input-icon-wrap">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <input type="email" class="field-input with-icon" id="email" placeholder="shashank@example.com" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact details -->
+          <div class="form-card">
+            <div class="form-card-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.14 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.46-.46a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              Contact details
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Country <span class="required">*</span></label>
+              <div class="input-icon-wrap">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+                <select class="field-input with-icon" id="country-select" onchange="onCountryChange()">
+                  <option value="">Select country</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Phone number <span class="required">*</span></label>
+              <div class="phone-row">
+                <div class="phone-code-wrap">
+                  <span class="phone-flag" id="phone-flag">🌐</span>
+                  <span class="phone-code" id="phone-code">+__</span>
+                </div>
+                <input type="tel" class="field-input phone-input" id="phone" placeholder="9876543210" maxlength="15" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Location details -->
+          <div class="form-card">
+            <div class="form-card-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Location
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">State / Province <span class="required">*</span></label>
+              <div class="input-icon-wrap">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                <select class="field-input with-icon" id="state-select" onchange="onStateChange()" disabled>
+                  <option value="">Select country first</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">City</label>
+              <div class="input-icon-wrap">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <input type="text" class="field-input with-icon" id="city" placeholder="e.g. Bengaluru" oninput="liveUpdate()" />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">PIN / ZIP code</label>
+              <input type="text" class="field-input" id="pincode" placeholder="e.g. 560001" maxlength="10" />
+            </div>
+          </div>
+
+          <!-- Save button -->
+          <div class="form-actions">
+            <button class="btn-secondary" onclick="clearForm()">Clear all</button>
+            <button class="submit-btn" onclick="saveProfile()">
+              Save profile
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/countries.js"></script>
+  <script src="../js/profile.js"></script>
+</body>
+</html>

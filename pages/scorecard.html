@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicPulse — Ward Scorecards</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="shell">
+
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="logo-mark">CP</span>
+        <span class="logo-text">CivicPulse</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="../index.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Report issue
+        </a>
+        <a href="dashboard.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Ward dashboard
+        </a>
+        <a href="scorecard.html" class="nav-item active">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Scorecards
+        </a>
+        <a href="profile.html" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          My profile
+        </a>
+      </nav>
+      <div class="sidebar-sdg">
+        <span class="sdg-badge">SDG 11</span>
+        <span class="sdg-label">Sustainable Cities</span>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Ward scorecards</h1>
+          <p class="page-sub">Public data · No login required · Updated every Sunday</p>
+        </div>
+        <div class="public-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          Open data
+        </div>
+      </header>
+
+      <!-- Ward selector -->
+      <div class="ward-selector-row">
+        <span class="selector-label">Selected ward</span>
+        <select class="ward-select" id="ward-select" onchange="loadWard(this.value)">
+          <option value="42">Ward 42 — MG Road</option>
+          <option value="17">Ward 17 — Koramangala</option>
+          <option value="8">Ward 8 — Jayanagar</option>
+          <option value="31">Ward 31 — Indiranagar</option>
+          <option value="55">Ward 55 — Whitefield</option>
+        </select>
+      </div>
+
+      <!-- Selected ward metrics -->
+      <div class="ward-metrics" id="ward-metrics">
+        <div class="metric-card">
+          <span class="metric-big" id="m-total">148</span>
+          <span class="metric-lbl">Total reported</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-big success" id="m-resolved">129</span>
+          <span class="metric-lbl">Resolved</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-big success" id="m-rate">87%</span>
+          <span class="metric-lbl">Resolution rate</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-big" id="m-avg">4.2d</span>
+          <span class="metric-lbl">Avg. resolution time</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-big warning" id="m-pending">19</span>
+          <span class="metric-lbl">Still pending</span>
+        </div>
+      </div>
+
+      <!-- Rankings -->
+      <div class="rankings-section">
+        <h2 class="section-heading">All wards — resolution ranking</h2>
+
+        <div class="rank-list" id="rank-list">
+
+          <div class="rank-row" data-ward="8">
+            <span class="rank-num gold">1</span>
+            <div class="rank-info">
+              <span class="rank-ward-name">Ward 8 — Jayanagar</span>
+              <span class="rank-ward-sub">112 reported · 105 resolved</span>
+            </div>
+            <div class="rank-bar-wrap">
+              <div class="rank-bar" style="width:94%;background:#16a34a"></div>
+            </div>
+            <span class="rank-pct success">94%</span>
+            <span class="rank-avg">2.9d avg</span>
+          </div>
+
+          <div class="rank-row active-row" data-ward="42">
+            <span class="rank-num silver">2</span>
+            <div class="rank-info">
+              <span class="rank-ward-name">Ward 42 — MG Road</span>
+              <span class="rank-ward-sub">148 reported · 129 resolved</span>
+            </div>
+            <div class="rank-bar-wrap">
+              <div class="rank-bar" style="width:87%;background:#16a34a"></div>
+            </div>
+            <span class="rank-pct success">87%</span>
+            <span class="rank-avg">4.2d avg</span>
+          </div>
+
+          <div class="rank-row" data-ward="17">
+            <span class="rank-num bronze">3</span>
+            <div class="rank-info">
+              <span class="rank-ward-name">Ward 17 — Koramangala</span>
+              <span class="rank-ward-sub">203 reported · 148 resolved</span>
+            </div>
+            <div class="rank-bar-wrap">
+              <div class="rank-bar" style="width:73%;background:#d97706"></div>
+            </div>
+            <span class="rank-pct warning">73%</span>
+            <span class="rank-avg">6.8d avg</span>
+          </div>
+
+          <div class="rank-row" data-ward="31">
+            <span class="rank-num">4</span>
+            <div class="rank-info">
+              <span class="rank-ward-name">Ward 31 — Indiranagar</span>
+              <span class="rank-ward-sub">177 reported · 108 resolved</span>
+            </div>
+            <div class="rank-bar-wrap">
+              <div class="rank-bar" style="width:61%;background:#d97706"></div>
+            </div>
+            <span class="rank-pct warning">61%</span>
+            <span class="rank-avg">9.1d avg</span>
+          </div>
+
+          <div class="rank-row" data-ward="55">
+            <span class="rank-num">5</span>
+            <div class="rank-info">
+              <span class="rank-ward-name">Ward 55 — Whitefield</span>
+              <span class="rank-ward-sub">234 reported · 103 resolved</span>
+            </div>
+            <div class="rank-bar-wrap">
+              <div class="rank-bar" style="width:44%;background:#dc2626"></div>
+            </div>
+            <span class="rank-pct critical">44%</span>
+            <span class="rank-avg">14.3d avg</span>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>
